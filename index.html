@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense</title>
+    <link rel="icon" href="image/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-img">
+                <img src="image/logo.png" alt="Logo">
+            </div>
+            <div class="logo-text">
+                <h1>Expense <span>Tracker</span></h1>
+                <p>Track Today, Build a Better Tomorrow</p>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="show-over-view">
+            <!-- this code write in Js -->
+        </section>
+        <section class="expense-form">
+            <header class="add-text">
+                <div class="icon">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+                <h1>Add New Expense</h1>
+            </header>
+            <form class="form">
+                <div class="expense-name">
+                    <label for="name">Expense Name</label>
+                    <input type="text" placeholder="e.g. Grocery" id="name" required>
+                </div>
+                <div class="expense-name">
+                    <label for="amount">Amount</label>
+                    <input type="number" placeholder="e.g. 500" id="amount" required>
+                </div>
+                <div class="expense-name">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="shopping">shopping</option>
+                        <option value="Bills">Bills</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Health">Health</option>
+                        <option value="Education">Education</option>
+                        <option value="Groceries">Groceries</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="expense-name">
+                    <label for="date">Date</label>
+                    <input type="date" placeholder="e.g. Grocery" id="date" required>
+                </div>
+                <button>Add Expense</button>
+            </form>
+        </section>
+        <section class="expense-row">
+
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

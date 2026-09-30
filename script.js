@@ -1,0 +1,153 @@
+// All items will store in this array
+const expenses = [];
+let ind;
+// This array it create for show data
+const dataOfOverViews = [
+  {
+    class: "total",
+    image: "fa-solid fa-wallet",
+    title: "Total Expenses",
+    amount: 0,
+    discription: "All Expenses",
+  },
+  {
+    class: "number",
+    image: "fa-solid fa-chart-line",
+    title: "Number of Expenses",
+    amount: 0,
+    discription: "Total Transactions",
+  },
+  {
+    class: "average",
+    image: "fa-solid fa-chart-pie",
+    title: "Average Expense",
+    amount: 0,
+    discription: "Per Transactions",
+  },
+];
+// show variable is use to store a section.
+const show = document.querySelector(".show-over-view");
+// for loop is used for access all object from dataOfOverViews.
+for (let dataOfOverView of dataOfOverViews) {
+  // in show I am added Html for display
+  show.innerHTML += `<div class = "${dataOfOverView.class}">
+    <div class = "icon">
+        <i class= "${dataOfOverView.image}"></i>
+    </div>
+    <div class = "title">
+        <h3>${dataOfOverView.title}</h3>
+    </div>
+    <div class = "price">
+        <h2>${dataOfOverView.amount}</h2>
+    </div>
+    <div class = discription>
+        <p>${dataOfOverView.discription}</p>
+    </div>
+  </div>`;
+}
+// form variable is create for store form
+const form = document.querySelector(".form");
+
+// when i am click the submite btn my form will not go.
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+// I am selecting all form element
+const expenseName = document.querySelector("#name");
+const expenseAmount = document.querySelector("#amount");
+const expenseCategory = document.querySelector("#category");
+const expenseDate = document.querySelector("#date");
+const addBtn = document.querySelector(".form button");
+addBtn.addEventListener("click", added);
+function added() {
+  // all vlaues are saved in variable
+  const name = expenseName.value;
+  const amount = parseInt(expenseAmount.value);
+  const category = expenseCategory.value;
+  const date = expenseDate.value;
+  if (name == "" || amount == "" || category == "" || date == "") {
+    alert("Please filed all box");
+  } else {
+    // add in array in form of object
+    if (addBtn.innerText == "Add Expense") {
+      expenses.push({
+        name: name,
+        amount: amount,
+        category: category,
+        date: date,
+      });
+    }
+    // update the value if you want to edit the value
+    else if (addBtn.innerText == "Update") {
+      expenses[ind].name = name;
+      expenses[ind].date = date;
+      expenses[ind].category = category;
+      expenses[ind].amount = amount;
+    }
+    // select all h2(price, number of expenses and avrage)
+    const allH2 = document.querySelectorAll(".price h2");
+    // calulat total price
+    const price = expenses.reduce((acc, curr) => acc + curr.amount, 0);
+    // display total price
+    allH2[0].innerText = price;
+    // display Number of Expenses
+    allH2[1].innerText = expenses.length;
+    // display Average Expense
+    allH2[2].innerText = Math.round(price / expenses.length);
+    // after insert value remove the input value
+    expenseName.value = "";
+    expenseAmount.value = "";
+    expenseDate.value = "";
+
+    if (expenses.length >= 1) {
+      success();
+    }
+  }
+}
+// function for render all element
+function success() {
+  // select expense row for show the data
+  const expenseRow = document.querySelector(".expense-row");
+  // clear all row for again render array
+  // expenseRow.innerHTML = "";
+  // add all data in expenseRow
+  expenses.forEach((e) => {
+    expenseRow.innerHTML += `<div class="enteries">
+        <p class="name">${e.name}</p>
+        <p class="date">${e.date}</p>
+        <p class="category">${e.category}</p>
+        <p class="price-value">${e.amount}</p>
+        <button class="edit">Edit</button>
+        <button class="delete">Delete</button>
+        </div>`;
+  });
+  if (expenses.length >= 1) {
+    edit();
+    deletepart();
+  }
+}
+function edit() {
+  const editBtn = document.querySelectorAll(".edit");
+
+  for (let i = 0; i < editBtn.length; i++) {
+    editBtn[i].addEventListener("click", () => {
+      addBtn.innerHTML = "Update";
+      expenseName.value = expenses[i].name;
+      expenseDate.value = expenses[i].date;
+      expenseCategory.value = expenses[i].category;
+      expenseAmount.value = expenses[i].amount;
+      ind = i;
+    });
+  }
+  addBtn.innerHTML = "Add Expense";
+}
+
+function deletepart() {
+  const deleteBtn = document.querySelectorAll(".delete");
+  for (let i = 0; i < expenses.length; i++) {
+    deleteBtn[i].addEventListener("click", () => {
+      expenses.splice(i, 1);
+      console.log(deleteBtn);
+    });
+  }
+}

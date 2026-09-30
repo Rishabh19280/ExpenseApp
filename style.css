@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wdth@0,75..100;1,75..100&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background-color: #F7FBFE;
+}
+
+:root {
+    --primary-color: #5da9e9;
+    --seconder-color: black;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 6.25rem;
+    width: 100%;
+    background-color: #263649;
+}
+
+.logo-img {
+    margin: 0 1rem 0 5rem;
+    height: 60px;
+    width: 70px;
+}
+
+.logo-img img {
+    height: 100%;
+    width: 100%;
+}
+
+.logo-text h1 {
+    color: #f5f7fa;
+}
+
+.logo-text h1 span {
+    color: var(--primary-color);
+}
+
+.logo-text p {
+    color: #b8c4d1;
+}
+
+.show-over-view {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1.5rem 5rem;
+}
+
+.show-over-view .total,
+.show-over-view .number,
+.show-over-view .average {
+    width: 30%;
+    border-radius: 1rem;
+    padding: 1rem 1rem;
+}
+
+.show-over-view .total {
+    border: 1px solid #c7fcebe4;
+    background-color: #ddfaf1;
+}
+
+.show-over-view .total .icon,
+.show-over-view .number .icon,
+.show-over-view .average .icon {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-over-view .total .icon {
+    background-color: #d5f5e8;
+}
+
+.show-over-view .total .icon i {
+    color: #087c49;
+    font-size: 2rem;
+}
+
+.show-over-view .total .title h3,
+.show-over-view .number .title h3,
+.show-over-view .average .title h3 {
+    margin-top: 1rem;
+    font-family: Inter;
+    font-size: 1.5rem;
+}
+
+.show-over-view .total .title h3 {
+    color: #243B5A;
+}
+
+.show-over-view .total .price h2::before,
+.enteries .price-value::before,
+.show-over-view .average .price h2::before {
+    content: "₹";
+}
+
+.show-over-view .total .price h2,
+.show-over-view .number .price h2,
+.show-over-view .average .price h2 {
+    font-family: Inter;
+    font-size: 2rem;
+    margin: 0.5rem 0;
+}
+
+.show-over-view .total .price h2 {
+    color: #087c49;
+}
+
+.show-over-view .total .discription p,
+.show-over-view .number .discription p,
+.show-over-view .average .discription p {
+    margin-bottom: 1rem;
+    font-size: 600;
+    font-family: Inter;
+}
+
+.show-over-view .total .discription p {
+    color: #64748B;
+}
+
+.show-over-view .number {
+    border: 1px solid #FFF7ED;
+    background-color: #FFF7ED;
+}
+
+.show-over-view .number .icon {
+    background-color: #FFF0D9;
+}
+
+.show-over-view .number .icon i {
+    color: #D47A20;
+    font-size: 2rem;
+}
+
+.show-over-view .number .title h3 {
+    color: #243B5A;
+}
+
+.show-over-view .number .price h2 {
+    color: #D4670A;
+}
+
+.show-over-view .number .discription p {
+    color: #64748B;
+}
+
+.show-over-view .average {
+    border: 1px solid #F7F3FF;
+    background-color: #F7F3FF;
+}
+
+.show-over-view .average .icon {
+    background-color: #E9DEFF;
+}
+
+.show-over-view .average .icon i {
+    color: #783DE9;
+    font-size: 2rem;
+}
+
+.show-over-view .average .title h3 {
+    color: #243B5A;
+}
+
+.show-over-view .average .price h2 {
+    color: #6D36D9;
+}
+
+.show-over-view .average .discription p {
+    color: #64748B;
+}
+
+.expense-form {
+    margin: 2rem 5rem;
+    background: #fff;
+    border: 1px solid #E5EDF5;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.add-text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.add-text .icon {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2687E9;
+    border-radius: 40%;
+}
+
+.add-text .icon i {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.add-text h1 {
+    color: #243B5A;
+    font-family: Inter;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.form .expense-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 23%;
+}
+
+.expense-name label {
+    font-weight: 500;
+    font-size: 1.3rem;
+    font-family: Inter;
+    color: #243B5A;
+}
+
+.expense-name input,
+.expense-name select {
+    width: 100%;
+    height: 3rem;
+    outline: none;
+    border-radius: 10px;
+    border: 1px solid #D6E0EA;
+    font-size: 1.2rem;
+    padding: 0 1rem;
+}
+
+.expense-name input::placeholder,
+.expense-name select::placeholder {
+    color: #718096;
+}
+
+.form button {
+    margin-top: 1rem;
+    width: 100%;
+    height: 3rem;
+    background-color: #2687E9;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.expense-row {
+    margin: 0 5rem;
+    background-color: #ffffff;
+    min-height: 15rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3)
+}
+
+.expense-row h1 {
+    font-family: Inter;
+    color: #243B5A;
+    margin-bottom: 1rem;
+}
+
+.enteries {
+    /* margin-top: 1rem; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #a4a5a5;
+    padding: 1rem;
+}
+
+.enteries p {
+    font-family: Inter;
+}
+
+.enteries .name {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    color: #1E293B;
+    font-weight: 600;
+}
+
+.enteries .date {
+    color: #64748b;
+}
+
+.enteries .category {
+    padding: 0.5rem 1rem;
+    background-color: #EDE9FE;
+    border-radius: 0.5rem;
+    color: #7C4DFF;
+}
+.enteries .price-value {
+    color: #008A4C;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.enteries .edit{
+    background-color: #d7e9fa;
+    color: #0077E6;
+}
+.enteries .delete{
+    background-color: #FFE8EB;
+    color: #F43F5E;
+}
+
+.enteries .edit,
+.enteries .delete{
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+}
