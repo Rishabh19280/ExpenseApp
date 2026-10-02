@@ -51,6 +51,7 @@ const form = document.querySelector(".form");
 // when i am click the submite btn my form will not go.
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  added()
 });
 // I am selecting all form element
 const expenseName = document.querySelector("#name");
@@ -58,14 +59,13 @@ const expenseAmount = document.querySelector("#amount");
 const expenseCategory = document.querySelector("#category");
 const expenseDate = document.querySelector("#date");
 const addBtn = document.querySelector(".form button");
-addBtn.addEventListener("click", added);
 function added() {
   // all vlaues are saved in variable
   const name = expenseName.value;
-  const amount = parseInt(expenseAmount.value);
+  const amount = parseFloat(expenseAmount.value);
   const category = expenseCategory.value;
   const date = expenseDate.value;
-  if (name == "" || amount == "" || category == "" || date == "") {
+  if (name == "" || isNaN(amount) || category == "" || date == "") {
     alert("Please filed all box");
   } else {
     // add in array in form of object
@@ -83,17 +83,11 @@ function added() {
       expenses[ind].date = date;
       expenses[ind].category = category;
       expenses[ind].amount = amount;
+
+      addBtn.innerHTML = "Add Expense";
     }
     // select all h2(price, number of expenses and avrage)
-    const allH2 = document.querySelectorAll(".price h2");
-    // calulat total price
-    const price = expenses.reduce((acc, curr) => acc + curr.amount, 0);
-    // display total price
-    allH2[0].innerText = price;
-    // display Number of Expenses
-    allH2[1].innerText = expenses.length;
-    // display Average Expense
-    allH2[2].innerText = Math.round(price / expenses.length);
+    addAmountLengthAverage();
     // after insert value remove the input value
     expenseName.value = "";
     expenseAmount.value = "";
@@ -109,7 +103,7 @@ function success() {
   // select expense row for show the data
   const expenseRow = document.querySelector(".expense-row");
   // clear all row for again render array
-  // expenseRow.innerHTML = "";
+  expenseRow.innerHTML = "";
   // add all data in expenseRow
   expenses.forEach((e) => {
     expenseRow.innerHTML += `<div class="enteries">
@@ -121,15 +115,16 @@ function success() {
         <button class="delete">Delete</button>
         </div>`;
   });
-  if (expenses.length >= 1) {
-    edit();
-    deletepart();
-  }
+  edit();
+  deletepart();
 }
+// This function is create for edit functionality
 function edit() {
+  // select Edit button
   const editBtn = document.querySelectorAll(".edit");
-
+  // access all btn for using loop
   for (let i = 0; i < editBtn.length; i++) {
+    // add EventListener for data go in form input
     editBtn[i].addEventListener("click", () => {
       addBtn.innerHTML = "Update";
       expenseName.value = expenses[i].name;
@@ -139,15 +134,33 @@ function edit() {
       ind = i;
     });
   }
-  addBtn.innerHTML = "Add Expense";
 }
-
+// This fuction is cteate for delete functionality
 function deletepart() {
+  // Select Delete Button
   const deleteBtn = document.querySelectorAll(".delete");
   for (let i = 0; i < expenses.length; i++) {
     deleteBtn[i].addEventListener("click", () => {
+      // the code is delete in array one item
       expenses.splice(i, 1);
-      console.log(deleteBtn);
+      success();
+      addAmountLengthAverage();
     });
+  }
+}
+
+function addAmountLengthAverage() {
+  const allH2 = document.querySelectorAll(".price h2");
+  // calulat total price
+  const price = expenses.reduce((acc, curr) => acc + curr.amount, 0);
+  // display total price
+  allH2[0].innerText = price.toFixed(2);
+  // display Number of Expenses
+  allH2[1].innerText = expenses.length;
+  // display Average Expense
+  if (expenses.length >= 1) {
+    allH2[2].innerText = Math.round(price / expenses.length).toFixed(2);
+  } else {
+    allH2[2].innerText = 0;
   }
 }
