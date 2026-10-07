@@ -51,7 +51,7 @@ const form = document.querySelector(".form");
 // when i am click the submite btn my form will not go.
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  added()
+  added();
 });
 // I am selecting all form element
 const expenseName = document.querySelector("#name");
@@ -94,25 +94,26 @@ function added() {
     expenseDate.value = "";
 
     if (expenses.length >= 1) {
-      success();
+      success(expenses);
     }
   }
 }
 // function for render all element
-function success() {
+function success(arr) {
   // select expense row for show the data
   const expenseRow = document.querySelector(".expense-row");
   // clear all row for again render array
   expenseRow.innerHTML = "";
   // add all data in expenseRow
-  expenses.forEach((e) => {
+  arr.forEach((e) => {
+    const originalIndex = expenses.indexOf(e);
     expenseRow.innerHTML += `<div class="enteries">
         <p class="name">${e.name}</p>
         <p class="date">${e.date}</p>
         <p class="category">${e.category}</p>
         <p class="price-value">${e.amount}</p>
-        <button class="edit">Edit</button>
-        <button class="delete">Delete</button>
+        <button class="edit" data-index="${originalIndex}">Edit</button>
+        <button class="delete" data-index="${originalIndex}">Delete</button>
         </div>`;
   });
   edit();
@@ -126,12 +127,13 @@ function edit() {
   for (let i = 0; i < editBtn.length; i++) {
     // add EventListener for data go in form input
     editBtn[i].addEventListener("click", () => {
+      const index = editBtn[i].dataset.index;
       addBtn.innerHTML = "Update";
-      expenseName.value = expenses[i].name;
-      expenseDate.value = expenses[i].date;
-      expenseCategory.value = expenses[i].category;
-      expenseAmount.value = expenses[i].amount;
-      ind = i;
+      expenseName.value = expenses[index].name;
+      expenseDate.value = expenses[index].date;
+      expenseCategory.value = expenses[index].category;
+      expenseAmount.value = expenses[index].amount;
+      ind = index;
     });
   }
 }
@@ -139,11 +141,12 @@ function edit() {
 function deletepart() {
   // Select Delete Button
   const deleteBtn = document.querySelectorAll(".delete");
-  for (let i = 0; i < expenses.length; i++) {
+  for (let i = 0; i < deleteBtn.length; i++) {
     deleteBtn[i].addEventListener("click", () => {
       // the code is delete in array one item
-      expenses.splice(i, 1);
-      success();
+      const index = deleteBtn[i].dataset.index;
+      expenses.splice(index, 1);
+      success(expenses);
       addAmountLengthAverage();
     });
   }
@@ -159,8 +162,26 @@ function addAmountLengthAverage() {
   allH2[1].innerText = expenses.length;
   // display Average Expense
   if (expenses.length >= 1) {
-    allH2[2].innerText = Math.round(price / expenses.length).toFixed(2);
+    allH2[2].innerText = parseFloat((price / expenses.length).toFixed(2));
   } else {
     allH2[2].innerText = 0;
   }
+}
+
+// SEARCH LOGIC
+// SELECT INPUT
+const inputForSearch = document.querySelector(".search-form input");
+
+const searchForm = document.querySelector(".search-form");
+
+searchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  searchItem();
+});
+
+function searchItem() {
+  const newArr = expenses.filter((e) =>
+    e.name.toLowerCase().includes(inputForSearch.value.toLowerCase()),
+  );
+  success(newArr);
 }

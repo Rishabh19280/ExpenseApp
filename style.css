@@ -186,7 +186,8 @@ body {
     color: #64748B;
 }
 
-.expense-form {
+.expense-form,
+.search-section {
     margin: 2rem 5rem;
     background: #fff;
     border: 1px solid #E5EDF5;
@@ -244,7 +245,9 @@ body {
 }
 
 .expense-name input,
-.expense-name select {
+.expense-name select,
+.search-form input,
+.search-form select {
     width: 100%;
     height: 3rem;
     outline: none;
@@ -255,11 +258,12 @@ body {
 }
 
 .expense-name input::placeholder,
-.expense-name select::placeholder {
+.search-form input::placeholder {
     color: #718096;
 }
 
-.form button {
+.form button,
+.search-form button {
     margin-top: 1rem;
     width: 100%;
     height: 3rem;
@@ -315,23 +319,44 @@ body {
     border-radius: 0.5rem;
     color: #7C4DFF;
 }
+
 .enteries .price-value {
     color: #008A4C;
     font-size: 1.5rem;
     font-weight: 600;
 }
-.enteries .edit{
+
+.enteries .edit {
     background-color: #d7e9fa;
     color: #0077E6;
 }
-.enteries .delete{
+
+.enteries .delete {
     background-color: #FFE8EB;
     color: #F43F5E;
 }
 
 .enteries .edit,
-.enteries .delete{
+.enteries .delete {
     padding: 0.8rem 2rem;
     border: none;
     border-radius: 0.5rem;
+}
+.search-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search-form input {
+    width: 60%;
+}
+
+.search-form button {
+    margin-top: 0;
+    width: 15%;
+    height: 3rem;
+}
+.search-form select{
+    width: 20%;
 }
